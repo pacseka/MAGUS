@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{64C7711F-F333-4F7D-B8D6-E831741010D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MAGUS.Web.Facade</RootNamespace>
+    <AssemblyName>MAGUS.Web.Facade</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilterMap\OperationAttribute.cs" />
+    <Compile Include="FilterMap\OperationType.cs" />
+    <Compile Include="FilterMap\SortBulider.cs" />
+    <Compile Include="Interfaces\MinMaxFilter.cs" />
+    <Compile Include="StartApp.cs" />
+    <Compile Include="Interfaces\IBaseFilter.cs" />
+    <Compile Include="Interfaces\IWeaponFilter.cs" />
+    <Compile Include="Interfaces\IWeaponFacade.cs" />
+    <Compile Include="FilterMap\MapServiceFilterToRepoFilter.cs" />
+    <Compile Include="Models\BaseFilter.cs" />
+    <Compile Include="Models\WeaponFilter.cs" />
+    <Compile Include="FilterMap\ExpressionBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WeaponFacade.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MAGUS.Domain\MAGUS.Domain.csproj">
+      <Project>{b8fc3c1c-ca39-403c-8956-b9ebca9b4c27}</Project>
+      <Name>MAGUS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MAGUS.Infrastructure\MAGUS.Infrastructure.csproj">
+      <Project>{160BEB47-8DA1-49C4-9E0F-258A1C1100CD}</Project>
+      <Name>MAGUS.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MAGUS.Services\MAGUS.Services.csproj">
+      <Project>{2e9a1714-76c2-425e-a96b-42dbc2bfd68e}</Project>
+      <Name>MAGUS.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

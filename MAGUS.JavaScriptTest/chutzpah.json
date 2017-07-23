@@ -1,0 +1,13 @@
+﻿{
+  "Framework": "jasmine",
+  "References": [
+    { "Path": "../MAGUS.Web/Scripts/components/knockout/dist/knockout.js"  },
+    { "Path": "../MAGUS.Web/Scripts/components/jquery/dist/jquery.min.js" },
+    {
+      "Path": "../MAGUS.Web/Scripts/app",
+      "Includes": [ "*.js" ]
+    },
+    { "Path": "Scripts/jasmine/mock-ajax.js", "IsTestFrameworkFile": true}
+  ],
+  "Tests": [ { "Path": "Scripts/tests.arc" } ]
+}
