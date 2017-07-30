@@ -2,6 +2,7 @@
 using MAGUS.Services.Interfaces;
 using MAGUS.Web.Facade.FilterMap;
 using MAGUS.Web.Facade.Interfaces;
+using MAGUS.Web.Facade.Models;
 using System.Collections.Generic;
 using System.Linq;
 

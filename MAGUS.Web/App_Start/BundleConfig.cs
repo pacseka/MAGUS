@@ -9,22 +9,21 @@ namespace MAGUS.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/lib/jquery/dist/jquery.js"));
+                        "~/Scripts/lib/jquery/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/lib/dist/js/bootstrap.js"));
+                      "~/Scripts/lib/js/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/vue").Include(
-                "~/Scripts/lib/vue/dist/vue.js"));
+                "~/Scripts/lib/vue/vue.js"));
 
             bundles.Add(new ScriptBundle("~/app").Include(
                     "~/Scripts/app/app.datamodel.js",
-                    "~/Scripts/app/app.viewmodel.js",
-                    "~/Scripts/app/_run.js"
+                    "~/Scripts/app/app.viewmodel.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Scripts/lib/bootstrap/dist/css/bootstrap.css",
+                      "~/Scripts/lib/bootstrap/css/bootstrap.css",
                       "~/Content/site.css"));
         }
     }

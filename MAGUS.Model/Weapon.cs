@@ -13,6 +13,8 @@ namespace MAGUS.Model
         public string Name { get; set; }
         public int Initiate { get; set; }
         public string Damage { get; set; }
+
+        [BsonRequired]
         public int Cost { get; set; }
         public decimal Weight { get; set; }
         public string Description { get; set; }

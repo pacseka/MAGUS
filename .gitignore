@@ -43,6 +43,8 @@ dlldata.c
 #Custom ignore
 MAGUS.Web/Scripts/lib/
 MAGUS.Web/Scripts/out/
+MAGUS.Web/wwwroot/lib/
+MAGUS.Web/wwwroot/out/
 
 # DNX
 project.lock.json

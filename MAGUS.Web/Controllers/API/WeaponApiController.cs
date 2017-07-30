@@ -17,7 +17,7 @@ namespace MAGUS.Web.Controllers.API
         }
 
         [HttpPost]
-        public IHttpActionResult Get([FromUri]IWeaponFilter weaponFilter)
+        public IHttpActionResult Search(WeaponFilter weaponFilter)
         {
             try
             {

@@ -3,6 +3,8 @@
   "name": "magus.web",
   "private": true,
   "devDependencies": {
-    "bower": "^1.8.0"
+    "bower": "^1.8.0",
+    "gulp-clean": "^0.3.2",
+    "webpack": "^3.4.1"
   }
 }

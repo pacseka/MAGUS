@@ -3,21 +3,29 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div data-bind="with: weapon">
-    <input type="checkbox" data-bind="checked: isImportant" />
-
+<div id="weaponvue">
     <h2>Fegyverek</h2>
     <table id="tbMeleeWeapon" class="table table-striped table-bordered" cellspacing="0">
         <thead>
             <tr>
-                <th>Név</th>
+                <th>Fegyver neve</th>
+                <th>KÉ</th>
+                <th>Ár</th>
             </tr>
         </thead>
     </table>
     <h2>Távolsági fegyverek</h2>
-    <table id="tbRangedWeapon" class="table table-striped table-bordered" cellspacing="0"></table>
+    <table id="tbRangedWeapon" class="table table-striped table-bordered" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Fegyver neve</th>
+                <th>KÉ</th>
+                <th>Ár</th>
+            </tr>
+        </thead>
+    </table>
 </div>
 @section scripts {
-    <script src="~/Scripts/components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/lib/datatables.net/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/app/weapon.viewmodel.js"></script>
 }
