@@ -30,13 +30,13 @@ namespace MAGUS.Web.FacadeTest
         [TestMethod]
         public void CreateExpressionTest()
         {
-            var weaponFilter = new WeaponFilter();
+            IWeaponFilter weaponFilter = new WeaponFilter();
             weaponFilter.Cost = new MinMaxFilter<int?> { Min = 12, Max = 45 };
             weaponFilter.Name = "Kah";
 
             var expressionBuilder = new ExpressionBuilder();
 
-            var resultExpression = expressionBuilder.CreateExpression<WeaponDTO, WeaponFilter>(weaponFilter);
+            var resultExpression = expressionBuilder.CreateExpression<WeaponDTO, IWeaponFilter>(weaponFilter);
 
             List<WeaponDTO> testDTOList = new List<WeaponDTO>();
             testDTOList.Add(new WeaponDTO { Cost = 0, Name = "Kahrei" });

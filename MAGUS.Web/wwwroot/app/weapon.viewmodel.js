@@ -1,9 +1,9 @@
-﻿/// <reference path="app.datamodel.js" />
-/// <reference path="app.viewmodel.js" />
-
-
+﻿
 var weaponvue = new Vue({
     el: '#weaponvue',
+    data: {
+        weapons: []
+    },
     methods: {
         Init: function (dataModel) {
             $("#tbMeleeWeapon").dataTable({
@@ -16,21 +16,24 @@ var weaponvue = new Vue({
                     "data": function () { return JSON.stringify({ Name: "Kahrei", Initiate: { Min: 0, Max: 10 } }); }
                 },
                 "columns": [
-                    { "data":"Name" },
+                    { "data": "Name" },
                     { "data": "Initiate" },
                     { "data": "Cost" }
                 ]
             });
         },
 
-        GetAll: function () {
+        FindWeapon: function () {
+            var vm = this;
+            var filter = JSON.stringify({ Name: "Kahrei", Initiate: { Min: 0, Max: 10 } });
             $.ajax({
-                url: dataModel.weaponUrl + "/get?category=melee",
+                url: dataModel.weaponUrl + "/search",
                 contentType: "application/json",
-                method: "GET",
-                dataType: "json"
-            }).done(function (responseText) {
-                self.weaponArray(responseText);
+                method: "POST",
+                dataType: "json",
+                data: filter,
+            }).done(function (data) {
+                vm.weapons = data;
             }).fail(function (result) {
                 console.log(result);
             });
