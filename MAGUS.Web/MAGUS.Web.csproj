@@ -260,6 +260,7 @@
     <Content Include=".bowerrc" />
     <Content Include="gulpfile.js" />
     <Content Include="wwwroot\app\app.datamodel.js" />
+    <Content Include="wwwroot\app\app.js" />
     <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="wwwroot\lib\bootstrap\dist\css\bootstrap.css" />
@@ -1621,6 +1622,15 @@
     <Content Include="wwwroot\lib\gulp\test\fixtures\stuff\test.dmc" />
     <Content Include="wwwroot\lib\gulp\test\fixtures\test.coffee" />
     <Content Include="wwwroot\lib\gulp\test\fixtures\test\run.jade" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wwwroot\app\listcomponent.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Weapon\_Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Weapon\_SharedDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

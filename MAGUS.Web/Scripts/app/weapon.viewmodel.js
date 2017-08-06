@@ -1,6 +1,6 @@
 
 var weaponvue = new Vue({
-    el: '#weaponvue',
+    el: '#weaponvuedaadadad',
     data: {
         weapons: []
     },

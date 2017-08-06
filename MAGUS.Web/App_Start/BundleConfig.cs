@@ -12,15 +12,20 @@ namespace MAGUS.Web
                         "~/Scripts/lib/jquery/jquery.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/lib/js/bootstrap.js"));
+                      "~/Scripts/lib/bootstrap/js/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/vue").Include(
-                "~/Scripts/lib/vue/vue.js"));
+                "~/Scripts/lib/vue/vue.js",
+                 "~/Scripts/lib/vue-infinite-loading/vue-infinite-loading.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/app").Include(
                     "~/Scripts/app/app.datamodel.js",
-                    "~/Scripts/app/app.viewmodel.js"
+                    "~/Scripts/app/app.js",
+                    "~/Scripts/app/listcomponent.js"
                 ));
+
+            
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Scripts/lib/bootstrap/css/bootstrap.css",

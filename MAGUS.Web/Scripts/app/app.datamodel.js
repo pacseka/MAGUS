@@ -5,6 +5,4 @@ function AppDataModel() {
     self.weaponUrl = "/api/weaponapi";
 
     self.returnUrl = self.siteUrl;
-
-    
 }

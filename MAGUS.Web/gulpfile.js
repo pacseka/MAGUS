@@ -31,4 +31,7 @@ gulp.task('copy', function () {
 
     gulp.src('wwwroot/app/**/*')
         .pipe(gulp.dest('Scripts/app'))
+
+    gulp.src('node_modules/vue-infinite-loading/dist/vue-infinite-loading.js')
+        .pipe(gulp.dest('Scripts/lib/vue-infinite-loading'));
 });
