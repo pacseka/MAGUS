@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.vuefade-enter-active, .vuefade-leave-active {
+    transition: opacity .5s
+}
+
+.vuefade-enter, .vuefade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0
+}

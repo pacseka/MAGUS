@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MAGUS.Domain;
+using MAGUS.Domain.Models;
 using MAGUS.Infrastructure.Interfaces;
 using MAGUS.Infrastructure.Repositories;
 using MAGUS.Model;
@@ -20,25 +21,19 @@ namespace MAGUS.Services.WeaponService
             _uow = uow;
         }
         //*********************************************************************
-        //public IEnumerable<Weapon> Weapons(string category)
-        //{
-        //    IEnumerable<Weapon> armory = new List<Weapon>();
-
-        //    Dictionary<string, Func<IEnumerable<Weapon>>> actionMap = new Dictionary<string, Func<IEnumerable<Weapon>>>
-        //    {
-        //        { "ranged", _uow.GetRepository<Weapon>().GetAll<RangedWeapon> },
-        //        { "melee", _uow.GetRepository<Weapon>().GetAll<MeleeWeapon> }
-        //    };
-        //    armory = actionMap[category]();
-
-        //    return armory;
-        //}
-        //*********************************************************************
-        public IEnumerable<WeaponDTO> FindWeapon(IServiceFilter<WeaponDTO> dtoFilter)
+        public IEnumerable<WeaponDTO> FindWeapons(IServiceFilter<WeaponDTO> dtoFilter)
         {
             var repoFilter = MapServiceFilterToRepoFilter<Weapon, WeaponDTO>(dtoFilter);
 
             IEnumerable<WeaponDTO> rval = _uow.GetRepository<Weapon>().FindAll<WeaponDTO>(repoFilter);
+            return rval;
+        }
+        //*********************************************************************
+        public WeaponDTO FindWeapon(IServiceFilter<WeaponDTO> dtoFilter)
+        {
+            var repoFilter = MapServiceFilterToRepoFilter<Weapon, WeaponDTO>(dtoFilter);
+            var rval = _uow.GetRepository<Weapon>().Find<WeaponDTO>(repoFilter.Filter);
+
             return rval;
         }
         //*********************************************************************
@@ -54,7 +49,7 @@ namespace MAGUS.Services.WeaponService
             return repoFilter;
         }
         //*********************************************************************
-        public WeaponDTO CreateWeapon(WeaponDTO weaponDTO)
+        public WeaponDTO CreateRangedWeapon(RangedWeaponDTO weaponDTO)
         {
             Weapon weapon = Mapper.Map<Weapon>(weaponDTO);
             weapon = _uow.GetRepository<Weapon>().Add(weapon);
@@ -63,7 +58,22 @@ namespace MAGUS.Services.WeaponService
             return weaponDTO;
         }
         //*********************************************************************
-        public bool Update(WeaponDTO weaponDTO)
+        public WeaponDTO CreateMeleeWeapon(MeleeWeaponDTO weaponDTO)
+        {
+            Weapon weapon = Mapper.Map<Weapon>(weaponDTO);
+            weapon = _uow.GetRepository<Weapon>().Add(weapon);
+            weaponDTO = Mapper.Map<MeleeWeaponDTO>(weapon);
+
+            return weaponDTO;
+        }
+        //*********************************************************************
+        public bool UpdateRangedWeapon(RangedWeaponDTO weaponDTO)
+        {
+            Weapon weapon = Mapper.Map<Weapon>(weaponDTO);
+            return _uow.GetRepository<Weapon>().Update(x => x.ID == weapon.ID, weapon);
+        }
+        //*********************************************************************
+        public bool UpdateMeleeWeapon(MeleeWeaponDTO weaponDTO)
         {
             Weapon weapon = Mapper.Map<Weapon>(weaponDTO);
             return _uow.GetRepository<Weapon>().Update(x => x.ID == weapon.ID, weapon);

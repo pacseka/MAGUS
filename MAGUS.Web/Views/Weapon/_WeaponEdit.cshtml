@@ -1,0 +1,89 @@
+﻿<script type="text/x-template" id="weaponedit-template">
+    <form>
+        <div class="col-md-6">
+            <div class="form-group" :class="{'has-error': errors.has('Name') }">
+                <label class="control-label" for="Name">Név:</label>
+                <input name="Name" type="text" class="form-control" v-model.trim="Name" v-validate.initial="'required|min:3'" data-vv-as="Név" placeholder="Fegyver neve" />
+                <span v-show="errors.has('Name')" class="text-danger small">{{ errors.first('Name') }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" :class="{'has-error': errors.has('Initiate') }">
+                <label class="control-label" for="Initiate">Kezdeményező Érték:</label>
+                <input name="Initiate" type="text" class="form-control" v-model="Initiate" v-validate.initial="'required|numeric'" data-vv-as="Kezdeményező Érték" placeholder="KÉ" />
+                <span v-show="errors.has('Initiate')" class="text-danger small">{{ errors.first('Initiate') }}</span>
+            </div>
+        </div>
+        <section v-if="weaponType == 'melee'">
+            <div class="col-md-6">
+                <div class="form-group" :class="{'has-error': errors.has('OffenseValue') }">
+                    <label class="control-label" for="OffenseValue">Támadó Érték:</label>
+                    <input name="OffenseValue" type="text" class="form-control" v-model="OffenseValue" v-validate.initial="'required|numeric'" data-vv-as="Támadó Érték" placeholder="TÉ" />
+                    <span v-show="errors.has('OffenseValue')" class="text-danger small">{{ errors.first('OffenseValue') }}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" :class="{'has-error': errors.has('DefenseValue') }">
+                    <label class="control-label" for="DefenseValue">Védő Érték:</label>
+                    <input name="DefenseValue" type="text" class="form-control" v-model="DefenseValue" v-validate.initial="'required|numeric'" data-vv-as="Védő Érték" placeholder="VÉ" />
+                    <span v-show="errors.has('DefenseValue')" class="text-danger small">{{ errors.first('DefenseValue') }}</span>
+                </div>
+            </div>
+        </section>
+        <section v-if="weaponType == 'ranged'">
+            <div class="col-md-6">
+                <div class="form-group" :class="{'has-error': errors.has('TargetingValue') }">
+                    <label class="control-label" for="TargetingValue">Célzó Érték:</label>
+                    <input name="TargetingValue" type="text" class="form-control" v-model="TargetingValue" v-validate.initial="'required|numeric'" data-vv-as="Célzó Érték" placeholder="CÉ" />
+                    <span v-show="errors.has('TargetingValue')" class="text-danger small">{{ errors.first('TargetingValue') }}</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group" :class="{'has-error': errors.has('Range') }">
+                    <label class="control-label" for="Range">Táv:</label>
+                    <input name="Range" type="text" class="form-control" v-model="Range" v-validate.initial="'required|numeric'" data-vv-as="Táv" placeholder="Táv" />
+                    <span v-show="errors.has('Range')" class="text-danger small">{{ errors.first('Range') }}</span>
+                </div>
+            </div>
+        </section>
+        <div class="col-md-6">
+            <div class="form-group" :class="{'has-error': errors.has('Damage') }">
+                <label class="control-label" for="Damage">Sebzés:</label>
+                <input name="Damage" type="text" class="form-control" v-model="Damage" v-validate.initial="'required'" data-vv-as="Sebzés" placeholder="Sebzés" />
+                <span v-show="errors.has('Damage')" class="text-danger small">{{ errors.first('Damage') }}</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group" :class="{'has-error': errors.has('Cost') }">
+                <label class="control-label" for="Cost">Ár (réz):</label>
+                <input name="Cost" type="text" class="form-control" v-model="Cost" v-validate.initial="'numeric'" data-vv-as="Ár" placeholder="Ár" />
+                <span v-show="errors.has('Cost')" class="text-danger small">{{ errors.first('Cost') }}</span>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label" for="Weight">Súly:</label>
+                <input name="Weight" type="text" class="form-control" style="min-width: 100%" v-model="Weight" placeholder="Súly" />
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group" :class="{'has-error': errors.has('Description') }">
+                <label class="control-label" for="Description">Leírás:</label>
+                <textarea name="Description" v-model="Description" class="form-control" style="min-width: 100%" rows="3" v-validate.initial="'required|min:5'" data-vv-as="Leírás"></textarea>
+                <span v-show="errors.has('Description')" class="text-danger small">{{ errors.first('Description') }}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-default" v-on:click="record()">Mentés</button>
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Bezár</button>
+        </div>
+        <div class="form-group">
+            <transition name="vuefade">
+                <div class="alert alert-success alert-dismissable" role="alert" v-show="messages.showSuccess == true">
+                    <button type="button" class="close" v-on:click="messages.showSuccess = false" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Siker!</strong> A rögzítés sikerült!
+                </div>
+            </transition>
+        </div>
+    </form>
+</script>

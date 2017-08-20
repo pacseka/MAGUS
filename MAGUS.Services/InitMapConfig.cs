@@ -2,16 +2,9 @@
 using MAGUS.Domain;
 using MAGUS.Domain.Models;
 using MAGUS.Infrastructure.Interfaces;
-using MAGUS.Infrastructure.Repositories;
 using MAGUS.Model;
 using MAGUS.Services.Interfaces;
-using MAGUS.Services.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MAGUS.Services
 {
@@ -22,8 +15,10 @@ namespace MAGUS.Services
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<Weapon, WeaponDTO>()
-                    .Include<RangedWeapon, RangedWeaponDTO>().ReverseMap();
+                    .Include<RangedWeapon, RangedWeaponDTO>()
+                    .Include<MeleeWeapon, MeleeWeaponDTO>().ReverseMap();
                 cfg.CreateMap<RangedWeapon, RangedWeaponDTO>().ReverseMap();
+                cfg.CreateMap<MeleeWeapon, MeleeWeaponDTO>().ReverseMap();
 
                 cfg.CreateMap(typeof(IServiceFilter<>), typeof(IRepoFilter<>)).ConvertUsing(typeof(Converter<,>));
 

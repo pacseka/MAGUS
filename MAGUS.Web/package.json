@@ -4,10 +4,16 @@
   "private": true,
   "devDependencies": {
     "bower": "^1.8.0",
+    "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "webpack": "^3.4.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "vee-validate": "^2.0.0-rc.13",
+    "vue": "^2.4.2",
     "vue-infinite-loading": "^2.1.3"
   }
 }

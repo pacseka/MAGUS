@@ -4,6 +4,9 @@ namespace MAGUS.Web.Facade.Interfaces
 {
     public interface IWeaponFilter : IBaseFilter
     {
+        [OperationAttribute(OperationType.Equal)]
+        string ID { get; set; }
+
         [OperationAttribute(OperationType.Contains)]
         string Description { get; set; }
 

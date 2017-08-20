@@ -6,6 +6,8 @@ namespace MAGUS.Web.Facade.Models
 {
     public class WeaponFilter : BaseFilter, IWeaponFilter
     {
+        public string ID { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

@@ -1,0 +1,69 @@
+﻿<script type="text/x-template" id="weaponlist-template">
+    <div>
+        <div>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" v-on:click="create()" data-toggle="modal" :data-target="'#' + modalId">
+                    <span class=" glyphicon glyphicon-plus-sign"></span>
+                    Új ...
+                </button>
+            </div>
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Név</th>
+                        <th>KÉ</th>
+                        <th v-if="type =='melee'">TÉ</th>
+                        <th v-if="type == 'melee'">VÉ</th>
+                        <th v-if="type == 'ranged'">CÉ</th>
+                        <th v-if="type == 'ranged'">Táv</th>
+                        <th>Sebzés</th>
+                        <th>Ár</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" v-on:keyup="search" v-model="filterModel.Name" />
+                        </td>
+                        <td></td>
+                        <td v-if="type == 'melee'"></td>
+                        <td v-if="type == 'melee'"></td>
+                        <td v-if="type == 'ranged'"></td>
+                        <td v-if="type == 'ranged'"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr v-for="item in weapons" v-on:click="onClick(item)" data-toggle="modal" :data-target="'#' + modalId">
+                        <td>{{item.Name}}</td>
+                        <td>{{item.Initiate}}</td>
+                        <td v-if="type == 'melee'">{{item.OffenseValue}}</td>
+                        <td v-if="type == 'melee'">{{item.DefenseValue}}</td>
+                        <td v-if="type == 'ranged'">{{item.TargetingValue}}</td>
+                        <td v-if="type == 'ranged'">{{item.Range}}</td>
+                        <td>{{item.Damage}}</td>
+                        <td>{{item.Cost}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <infinite-loading :on-infinite="onInfinite" :distance="distance" ref="infiniteLoading" spinner="bubbles">
+                <span slot="no-results"></span>
+                <span slot="no-more"></span>
+            </infinite-loading>
+        </div>
+        <div :id="modalId" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Fegyver részletei</h4>
+                    </div>
+                    <div class="modal-body">
+                        <weapon-edit :weapon-id="selectedId" :weapon-type="type" v-on:refresh="refresh"></weapon-edit>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+

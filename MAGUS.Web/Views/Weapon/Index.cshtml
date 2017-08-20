@@ -1,48 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Fegyverek";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container" id="weaponvue">
+<div class="container" id="weapon-viewmodel">
     <h2>Fegyverek</h2>
+
     <ul id="weapon-tabs" class="nav nav-tabs" data-tabs="tabs">
         <li role="presentation" class="active"><a href="#div-meele" data-toggle="tab">Kézi</a></li>
         <li role="presentation"><a href="#div-ranged" data-toggle="tab">Távolsági</a></li>
     </ul>
     <div class="tab-content">
-        
         <div class="tab-pane fade in active" id="div-meele">
-            <div id="meele" >
-                <button type="button" class="btn btn-default">Új ...</button>
-                <ul class="list-group">
-                    <li v-for="item in weapons" class="list-group-item row">
-                        <div class="col-md-4"><span class="label label-default">Név:</span> {{item.Name}}</div>
-                        <div class="col-md-2"><span class="label label-danger">Sebzés:</span> {{item.Damage}}</div>
-                        <div class="col-md-2">{{item.Cost}}</div>
-                    </li>
-                </ul>
-                <infinite-loading :on-infinite="onInfinite" :distance="distance" ref="infiniteLoading"></infinite-loading>
-            </div>
+            <h4>Kézi fegyverek</h4>
+            <weapon-list url="/api/weaponapi/search" type="melee"></weapon-list>
         </div>
-
         <div class="tab-pane fade" id="div-ranged">
-            <div class="tab-pane fade in active" id="div-meele">
-                <div id="ranged">
-                    <ul class="list-group">
-                        <li v-for="item in weapons" class="list-group-item row">
-                            <div class="col-md-4"><span class="label label-default">Név:</span> {{item.Name}}</div>
-                            <div class="col-md-2"><span class="label label-danger">Sebzés:</span> {{item.Damage}}</div>
-                            <div class="col-md-2">{{item.Cost}}</div>
-                        </li>
-                    </ul>
-                    <infinite-loading :on-infinite="onInfinite" :distance="distance" ref="infiniteLoading"></infinite-loading>
-                </div>
-            </div>
+            <h4>Célzó fegyverek</h4>
+            <weapon-list url="/api/weaponapi/search" type="ranged"></weapon-list>
         </div>
     </div>
-
 </div>
-@section scripts {
-    <script src="~/Scripts/lib/datatables.net/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/app/weapon.viewmodel.js"></script>
-}
+
+@Html.Partial("_WeaponEdit")
+@Html.Partial("_WeaponList")
+
+
+

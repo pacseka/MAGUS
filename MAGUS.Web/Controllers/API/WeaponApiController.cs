@@ -1,4 +1,5 @@
 ﻿using MAGUS.Domain;
+using MAGUS.Domain.Models;
 using MAGUS.Models;
 using MAGUS.Web.Facade.Interfaces;
 using MAGUS.Web.Facade.Models;
@@ -35,7 +36,7 @@ namespace MAGUS.Web.Controllers.API
         }
 
         [HttpPost]
-        public IHttpActionResult CreateRangedWeapon(RangedWeaponDTO rangedWeaponDTO)
+        public IHttpActionResult CreateRanged(RangedWeaponDTO rangedWeaponDTO)
         {
             ModelState.Clear();
             if (!ModelState.IsValid)
@@ -43,7 +44,7 @@ namespace MAGUS.Web.Controllers.API
                 return BadRequest(ModelState);
             }
 
-            var newWeapon = this._weaponFacade.CreateWeapon(rangedWeaponDTO);
+            var newWeapon = this._weaponFacade.CreateRangedWeapon(rangedWeaponDTO);
 
             if (string.IsNullOrEmpty(newWeapon.ID))
             {
@@ -53,34 +54,61 @@ namespace MAGUS.Web.Controllers.API
             return Ok(newWeapon);
         }
 
-
-        // GET api/<controller>/5
-        public string Get(int id)
-        {
-            return "value";
-        }
-
         [HttpPost]
-        public IHttpActionResult Post([FromBody]WeaponDTO weapon)
+        public IHttpActionResult CreateMelee(MeleeWeaponDTO meleeWeaponDTO)
         {
-            return Ok();
+            ModelState.Clear();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var newWeapon = this._weaponFacade.CreateMeleeWeapon(meleeWeaponDTO);
+
+            if (string.IsNullOrEmpty(newWeapon.ID))
+            {
+                InternalServerError();
+            }
+
+            return Ok(newWeapon);
         }
+
+        [HttpGet]
+        public WeaponDTO Get(string id)
+        {
+            var weapon = this._weaponFacade.GetWeapon(id);
+            return weapon;
+        }
+
 
         [HttpPut]
-        public IHttpActionResult Put([FromBody]WeaponDTO weapon)
+        public IHttpActionResult UpdateRanged(RangedWeaponDTO rangedWeaponDTO)
         {
             var result = false;
 
-            IHttpActionResult rval = Ok();
+            result = this._weaponFacade.UpdateRangedWeapon(rangedWeaponDTO);
+
+            IHttpActionResult rval = Ok(true);
 
             if (!result) rval = InternalServerError();
 
             return rval;
         }
 
-        // DELETE api/<controller>/5
-        public void Delete(int id)
+        [HttpPut]
+        public IHttpActionResult UpdateMelee(MeleeWeaponDTO meleeWeaponDTO)
         {
+            var result = false;
+
+            result = this._weaponFacade.UpdateMeleeWeapon(meleeWeaponDTO);
+
+            IHttpActionResult rval = Ok(true);
+
+            if (!result) rval = InternalServerError();
+
+            return rval;
+
         }
+
     }
 }
