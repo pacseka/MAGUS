@@ -27,6 +27,8 @@ namespace MAGUS.AspIdentityMongoDB
 
             var result = await _userManager.CreateAsync(user, password);
 
+            appUser.Id = user.Id;
+
             return result;
         }
 
@@ -35,6 +37,7 @@ namespace MAGUS.AspIdentityMongoDB
             IdentityUser user = new IdentityUser() { UserName = appUser.UserName, EmailAddress = appUser.EmailAddress };
 
             var result = await _userManager.CreateAsync(user);
+            appUser.Id = user.Id;
 
             return result;
         }

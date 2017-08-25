@@ -1,9 +1,18 @@
-﻿body {
+﻿/**
+* @stylesheet Site.css Site
+* @parent magusstyles
+* Alap stiusok
+*/
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Set padding to keep content from hitting the edges */
+/**
+* @styles body-content Set padding to keep content from hitting the edges 
+*
+*/
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -27,6 +36,7 @@ textarea {
     transition: opacity .5s
 }
 
-.vuefade-enter, .vuefade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+/* .fade-leave-active below version 2.1.8 */
+.vuefade-enter, .vuefade-leave-to  {
     opacity: 0
 }

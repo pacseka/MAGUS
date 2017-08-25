@@ -13,7 +13,8 @@ namespace MAGUS.Infrastructure
         IUserLoginStore<IdentityUser, string>,
         IUserEmailStore<IdentityUser>,
         IUserLockoutStore<IdentityUser, string>,
-        IUserTwoFactorStore<IdentityUser, string>
+        IUserTwoFactorStore<IdentityUser, string>,
+        IUserPasswordStore<IdentityUser, string>
     {
 
         private IMongoCollection<IdentityUser> _collection;
@@ -66,7 +67,7 @@ namespace MAGUS.Infrastructure
 
         public Task<int> GetAccessFailedCountAsync(IdentityUser user)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(user.LoginAttempt);
         }
 
         public Task<string> GetEmailAsync(IdentityUser user)
@@ -94,14 +95,25 @@ namespace MAGUS.Infrastructure
             throw new NotImplementedException();
         }
 
+        public Task<string> GetPasswordHashAsync(IdentityUser user)
+        {
+            return Task.FromResult<string>(user.PasswordHash);
+        }
+
         public Task<bool> GetTwoFactorEnabledAsync(IdentityUser user)
         {
             return Task.FromResult<bool>(true);
         }
 
+        public Task<bool> HasPasswordAsync(IdentityUser user)
+        {
+            return Task.FromResult<bool>(!String.IsNullOrEmpty(user.Password));
+        }
+
         public Task<int> IncrementAccessFailedCountAsync(IdentityUser user)
         {
-            throw new NotImplementedException();
+            user.LoginAttempt++;
+            return Task.FromResult(user.LoginAttempt);
         }
 
         public Task RemoveLoginAsync(IdentityUser user, UserLoginInfo login)
@@ -132,6 +144,12 @@ namespace MAGUS.Infrastructure
         public Task SetLockoutEndDateAsync(IdentityUser user, DateTimeOffset lockoutEnd)
         {
             throw new NotImplementedException();
+        }
+
+        public Task SetPasswordHashAsync(IdentityUser user, string passwordHash)
+        {
+            user.PasswordHash = passwordHash;
+            return Task.FromResult(0);
         }
 
         public Task SetTwoFactorEnabledAsync(IdentityUser user, bool enabled)

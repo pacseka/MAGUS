@@ -322,7 +322,12 @@
   <ItemGroup>
     <Content Include="Views\Weapon\_WeaponList.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="documentjs.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\magusstyles.md" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

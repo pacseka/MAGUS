@@ -28,6 +28,12 @@ namespace MAGUS.Model
 
         public List<UserLoginInfo> LoginInfo { get; set; }
 
+        public string PasswordHash { get; set; }
+
+        public int LoginAttempt { get; set; }
+
+        public string Password { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<IdentityUser> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
