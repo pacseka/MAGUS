@@ -23,19 +23,24 @@ namespace MAGUS.Web
 
             bundles.Add(new ScriptBundle("~/app").Include(
                     "~/Scripts/app/app.datamodel.js",
-                    "~/Scripts/app/app.js",
-                    "~/Scripts/app/weaponedit.component.js",
-                    "~/Scripts/app/weaponlist.component.js",
-                    "~/Scripts/app/weapon.viewmodel.js"
+                    "~/Scripts/app/app.js"
+
                 ));
 
             bundles.Add(new ScriptBundle("~/globals").Include(
                     "~/Scripts/lib/lodash/lodash.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/weapon-components")
+                .Include("~/Scripts/app/weaponedit.component.js")
+                .Include("~/Scripts/app/weaponlist.component.js")
+                .Include("~/Scripts/app/weapon.viewmodel.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Scripts/lib/bootstrap/css/bootstrap.css",
                       "~/Content/site.css"));
+
+
         }
     }
 }

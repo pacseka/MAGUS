@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using MongoDB.Driver;
+using Microsoft.Owin.Security.Facebook;
 using Owin;
 using System;
 using System.Configuration;
@@ -44,7 +44,11 @@ namespace MAGUS.AspIdentityMongoDB
                 ClientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"]
             });
 
-
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
+            {
+                AppId = ConfigurationManager.AppSettings["FacebookAppId"],
+                AppSecret = ConfigurationManager.AppSettings["FacebookAppSecret"]
+            });
         }
     }
 }
