@@ -267,3 +267,4 @@ __pycache__/
 *.pyc
 /MAGUS.Web/Scripts/app
 /MAGUS.Web/styleguide
+/MAGUS.Web/socialLogin.config

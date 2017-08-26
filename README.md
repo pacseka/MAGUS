@@ -1,9 +1,14 @@
 # MAGUS
 
 1. npm install
-1. Add these lines to web.config at appSetting section:
+1. Add socialLogin.config file with your datas to MAGUS.Web project:
 
 ```xml
-    <add key="GoogleClientId" value="your.client.id"/>
-    <add key="GoogleClientSecret" value="your_secret"/>
+<?xml version="1.0"?>
+<socialLoginSettings>
+  <add key="FacebookAppId" value="your.client.id" />
+  <add key="FacebookAppSecret" value="your_secret" />
+  <add key="GoogleClientId" value="your.client.id" />
+  <add key="GoogleClientSecret" value="your_secret" />
+</socialLoginSettings>
 ```

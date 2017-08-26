@@ -9,6 +9,7 @@ using Microsoft.Owin.Security.Facebook;
 using Owin;
 using System;
 using System.Configuration;
+using System.Collections.Specialized;
 
 namespace MAGUS.AspIdentityMongoDB
 {
@@ -38,16 +39,18 @@ namespace MAGUS.AspIdentityMongoDB
 
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
+            var socialLoginSection = ConfigurationManager.GetSection("socialLoginSettings") as NameValueCollection;
+
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = ConfigurationManager.AppSettings["GoogleClientId"],
-                ClientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"]
+                ClientId = socialLoginSection["GoogleClientId"],
+                ClientSecret = socialLoginSection["GoogleClientSecret"]
             });
 
             app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
             {
-                AppId = ConfigurationManager.AppSettings["FacebookAppId"],
-                AppSecret = ConfigurationManager.AppSettings["FacebookAppSecret"]
+                AppId = socialLoginSection["FacebookAppId"],
+                AppSecret = socialLoginSection["FacebookAppSecret"]
             });
         }
     }
